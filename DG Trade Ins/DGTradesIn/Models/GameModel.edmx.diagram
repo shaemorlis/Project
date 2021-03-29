@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="232682b293874feaa8bb3a737e40ed96" Name="Diagram1" ZoomLevel="95">
+        <EntityTypeShape EntityType="GameProjectModel.Cart" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.CartGameCode" Width="1.5" PointX="9.75" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.Category" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.Forum" Width="1.5" PointX="5.25" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.GameCode" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.Reply" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.Transcation" Width="1.5" PointX="7.625" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.UserAdmin" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.UserGamer" Width="1.5" PointX="5.25" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.UserMessage" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.UserRole" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameProjectModel.User" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="GameProjectModel.FK__Cart__CreatedBy__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__CartGameC__CartI__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__CartGameC__GameC__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Category__Catego__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Forum__addedBy__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Reply__ForumID__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__GameCode__GameCo__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Reply__ReplyBy__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Transcati__Trans__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Transcati__Trans__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__UserAdmin__UserI__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__UserGamer__UserI__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__UserMessa__SendB__45F365D3" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__UserMessa__SendT__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Users__RoleID__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="GameProjectModel.FK__Transcati__GameC__5CD6CB2B" />
+        <AssociationConnector Association="GameProjectModel.FK__Transcati__GameC__5DCAEF64" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

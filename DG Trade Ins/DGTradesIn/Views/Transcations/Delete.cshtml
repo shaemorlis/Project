@@ -1,0 +1,56 @@
+﻿@model DGTradesIn.Models.Transcation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Transcation</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TransactionResponse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TransactionResponse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserGamer.GamerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserGamer.GamerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserGamer1.GamerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserGamer1.GamerID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

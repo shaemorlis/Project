@@ -1,0 +1,77 @@
+﻿@model IEnumerable<DGTradesIn.Models.Transcation>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>My Transactions Swaps requests </h1>
+<br>
+<br>
+<br>
+
+<div class="col-md-12">
+    @if (TempData["error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["error"]
+        </div>
+    }
+    @if (TempData["success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["success"]
+        </div>
+    }
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionResponse)
+        </th>
+        <th>
+            Swap request
+        </th>
+        <th>
+            Swap With
+        </th
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransactionDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransactionResponse)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GameCode1.GameCodeTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.GameCode.GameCodeTitle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransactionResponse)
+    </td>
+    <td>
+
+        @if (item.TransactionResponse.Equals("Pending"))
+        {
+            @Html.ActionLink("Approve", "ApproveSwap", new { TransactionID = item.TransactionID }, new { @class = "btn btn-success" })
+            @Html.ActionLink("Decline", "DeclineSwap", new { TransactionID = item.TransactionID }, new { @class = "btn btn-danger" })
+        }
+
+
+    </td>
+</tr>
+    }
+
+</table>

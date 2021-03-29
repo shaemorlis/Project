@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartID" />
+    </Key>
+    <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="0" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="TotalPrice" Type="Double" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserGamer" Relationship="Self.FK__Cart__CreatedBy__3E52440B" FromRole="Cart" ToRole="UserGamer" />
+    <NavigationProperty Name="CartGameCodes" Relationship="Self.FK__CartGameC__CartI__4222D4EF" FromRole="Cart" ToRole="CartGameCode" />
+    <Property Name="isCheckedOut" Type="Binary" MaxLength="3" FixedLength="false" />
+    <Property Name="isCartCheckoutFinal" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="CartGameCode">
+    <Key>
+      <PropertyRef Name="CartGameCodeID" />
+    </Key>
+    <Property Name="CartGameCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameCode" Type="Int32" Nullable="false" />
+    <Property Name="CartID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cart" Relationship="Self.FK__CartGameC__CartI__4222D4EF" FromRole="CartGameCode" ToRole="Cart" />
+    <NavigationProperty Name="GameCode1" Relationship="Self.FK__CartGameC__GameC__412EB0B6" FromRole="CartGameCode" ToRole="GameCode" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryAddedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Category__Catego__34C8D9D1" FromRole="Category" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Forum">
+    <Key>
+      <PropertyRef Name="ForumID" />
+    </Key>
+    <Property Name="ForumID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Content" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AddedDate" Type="DateTime" Precision="0" />
+    <Property Name="addedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Forum__addedBy__2E1BDC42" FromRole="Forum" ToRole="Users" />
+    <NavigationProperty Name="Replies" Relationship="Self.FK__Reply__ForumID__30F848ED" FromRole="Forum" ToRole="Reply" />
+  </EntityType>
+  <EntityType Name="GameCode">
+    <Key>
+      <PropertyRef Name="GameCodeID" />
+    </Key>
+    <Property Name="GameCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GameCodeImage" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GameCodeTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GameCodeDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="GameCodePrice" Type="Double" />
+    <Property Name="GameCodeDiscount" Type="Double" />
+    <Property Name="GameCodeAddedDate" Type="DateTime" Precision="0" />
+    <Property Name="GameCodeAddedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CartGameCodes" Relationship="Self.FK__CartGameC__GameC__412EB0B6" FromRole="GameCode" ToRole="CartGameCode" />
+    <NavigationProperty Name="UserGamer" Relationship="Self.FK__GameCode__GameCo__3B75D760" FromRole="GameCode" ToRole="UserGamer" />
+    <Property Name="wantSwap" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Transcations" Relationship="GameProjectModel.FK__Transcati__GameC__5CD6CB2B" FromRole="GameCode" ToRole="Transcation" />
+    <NavigationProperty Name="Transcations1" Relationship="GameProjectModel.FK__Transcati__GameC__5DCAEF64" FromRole="GameCode" ToRole="Transcation" />
+  </EntityType>
+  <EntityType Name="Reply">
+    <Key>
+      <PropertyRef Name="ReplyID" />
+    </Key>
+    <Property Name="ReplyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReplyContent" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ForumID" Type="Int32" Nullable="false" />
+    <Property Name="ReplyBy" Type="Int32" Nullable="false" />
+    <Property Name="ReplyDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Forum" Relationship="Self.FK__Reply__ForumID__30F848ED" FromRole="Reply" ToRole="Forum" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Reply__ReplyBy__31EC6D26" FromRole="Reply" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Transcation">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TransactionDate" Type="DateTime" Precision="0" />
+    <Property Name="TransactionResponse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TransactionRequestedBy" Type="Int32" Nullable="false" />
+    <Property Name="TransactionRequestedTo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="UserGamer" Relationship="Self.FK__Transcati__Trans__37A5467C" FromRole="Transcation" ToRole="UserGamer" />
+    <NavigationProperty Name="UserGamer1" Relationship="Self.FK__Transcati__Trans__38996AB5" FromRole="Transcation" ToRole="UserGamer" />
+    <Property Name="GameCodeOffer" Type="Int32" Nullable="false" />
+    <Property Name="GameCodeRequested" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GameCode" Relationship="GameProjectModel.FK__Transcati__GameC__5CD6CB2B" FromRole="Transcation" ToRole="GameCode" />
+    <NavigationProperty Name="GameCode1" Relationship="GameProjectModel.FK__Transcati__GameC__5DCAEF64" FromRole="Transcation" ToRole="GameCode" />
+  </EntityType>
+  <EntityType Name="UserAdmin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__UserAdmin__UserI__286302EC" FromRole="UserAdmin" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserGamer">
+    <Key>
+      <PropertyRef Name="GamerID" />
+    </Key>
+    <Property Name="GamerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__CreatedBy__3E52440B" FromRole="UserGamer" ToRole="Cart" />
+    <NavigationProperty Name="GameCodes" Relationship="Self.FK__GameCode__GameCo__3B75D760" FromRole="UserGamer" ToRole="GameCode" />
+    <NavigationProperty Name="Transcations" Relationship="Self.FK__Transcati__Trans__37A5467C" FromRole="UserGamer" ToRole="Transcation" />
+    <NavigationProperty Name="Transcations1" Relationship="Self.FK__Transcati__Trans__38996AB5" FromRole="UserGamer" ToRole="Transcation" />
+    <NavigationProperty Name="User" Relationship="Self.FK__UserGamer__UserI__2B3F6F97" FromRole="UserGamer" ToRole="Users" />
+    <Property Name="Credits" Type="Int32" />
+  </EntityType>
+  <EntityType Name="UserMessage">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MessageContent" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MessageDate" Type="DateTime" Precision="0" />
+    <Property Name="SendTo" Type="Int32" Nullable="false" />
+    <Property Name="SendBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK__UserMessa__SendB__45F365D3" FromRole="UserMessages" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK__UserMessa__SendT__44FF419A" FromRole="UserMessages" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__RoleID__5165187F" FromRole="UserRole" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="ProfilePicture" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK__Category__Catego__34C8D9D1" FromRole="Users" ToRole="Category" />
+    <NavigationProperty Name="Fora" Relationship="Self.FK__Forum__addedBy__2E1BDC42" FromRole="Users" ToRole="Forum" />
+    <NavigationProperty Name="Replies" Relationship="Self.FK__Reply__ReplyBy__31EC6D26" FromRole="Users" ToRole="Reply" />
+    <NavigationProperty Name="UserAdmins" Relationship="Self.FK__UserAdmin__UserI__286302EC" FromRole="Users" ToRole="UserAdmin" />
+    <NavigationProperty Name="UserGamers" Relationship="Self.FK__UserGamer__UserI__2B3F6F97" FromRole="Users" ToRole="UserGamer" />
+    <NavigationProperty Name="UserMessages" Relationship="Self.FK__UserMessa__SendB__45F365D3" FromRole="Users" ToRole="UserMessages" />
+    <NavigationProperty Name="UserMessages1" Relationship="Self.FK__UserMessa__SendT__44FF419A" FromRole="Users" ToRole="UserMessages" />
+    <NavigationProperty Name="UserRole" Relationship="Self.FK__Users__RoleID__5165187F" FromRole="Users" ToRole="UserRole" />
+    <Property Name="Credits" Type="Int32" />
+  </EntityType>
+  <Association Name="FK__Cart__CreatedBy__3E52440B">
+    <End Role="UserGamer" Type="Self.UserGamer" Multiplicity="1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGamer">
+        <PropertyRef Name="GamerID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CartGameC__CartI__4222D4EF">
+    <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+    <End Role="CartGameCode" Type="Self.CartGameCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cart">
+        <PropertyRef Name="CartID" />
+      </Principal>
+      <Dependent Role="CartGameCode">
+        <PropertyRef Name="CartID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CartGameC__GameC__412EB0B6">
+    <End Role="GameCode" Type="Self.GameCode" Multiplicity="1" />
+    <End Role="CartGameCode" Type="Self.CartGameCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameCode">
+        <PropertyRef Name="GameCodeID" />
+      </Principal>
+      <Dependent Role="CartGameCode">
+        <PropertyRef Name="GameCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Category__Catego__34C8D9D1">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CategoryAddedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Forum__addedBy__2E1BDC42">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Forum" Type="Self.Forum" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Forum">
+        <PropertyRef Name="addedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reply__ForumID__30F848ED">
+    <End Role="Forum" Type="Self.Forum" Multiplicity="1" />
+    <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Forum">
+        <PropertyRef Name="ForumID" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="ForumID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GameCode__GameCo__3B75D760">
+    <End Role="UserGamer" Type="Self.UserGamer" Multiplicity="1" />
+    <End Role="GameCode" Type="Self.GameCode" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGamer">
+        <PropertyRef Name="GamerID" />
+      </Principal>
+      <Dependent Role="GameCode">
+        <PropertyRef Name="GameCodeAddedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reply__ReplyBy__31EC6D26">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Reply">
+        <PropertyRef Name="ReplyBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transcati__Trans__37A5467C">
+    <End Role="UserGamer" Type="Self.UserGamer" Multiplicity="1" />
+    <End Role="Transcation" Type="Self.Transcation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGamer">
+        <PropertyRef Name="GamerID" />
+      </Principal>
+      <Dependent Role="Transcation">
+        <PropertyRef Name="TransactionRequestedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transcati__Trans__38996AB5">
+    <End Role="UserGamer" Type="Self.UserGamer" Multiplicity="1" />
+    <End Role="Transcation" Type="Self.Transcation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserGamer">
+        <PropertyRef Name="GamerID" />
+      </Principal>
+      <Dependent Role="Transcation">
+        <PropertyRef Name="TransactionRequestedTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserAdmin__UserI__286302EC">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserAdmin">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserGamer__UserI__2B3F6F97">
+    <End Role="Users" Type="Self.User" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="UserGamer" Type="Self.UserGamer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserGamer">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserMessa__SendB__45F365D3">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserMessages" Type="Self.UserMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserMessages">
+        <PropertyRef Name="SendBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserMessa__SendT__44FF419A">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="UserMessages" Type="Self.UserMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserMessages">
+        <PropertyRef Name="SendTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__RoleID__5165187F">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GameProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="CartGameCodes" EntityType="Self.CartGameCode" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Fora" EntityType="Self.Forum" />
+    <EntitySet Name="GameCodes" EntityType="Self.GameCode" />
+    <EntitySet Name="Replies" EntityType="Self.Reply" />
+    <EntitySet Name="Transcations" EntityType="Self.Transcation" />
+    <EntitySet Name="UserAdmins" EntityType="Self.UserAdmin" />
+    <EntitySet Name="UserGamers" EntityType="Self.UserGamer" />
+    <EntitySet Name="UserMessages" EntityType="Self.UserMessage" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK__Cart__CreatedBy__3E52440B" Association="Self.FK__Cart__CreatedBy__3E52440B">
+      <End Role="UserGamer" EntitySet="UserGamers" />
+      <End Role="Cart" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CartGameC__CartI__4222D4EF" Association="Self.FK__CartGameC__CartI__4222D4EF">
+      <End Role="Cart" EntitySet="Carts" />
+      <End Role="CartGameCode" EntitySet="CartGameCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CartGameC__GameC__412EB0B6" Association="Self.FK__CartGameC__GameC__412EB0B6">
+      <End Role="GameCode" EntitySet="GameCodes" />
+      <End Role="CartGameCode" EntitySet="CartGameCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Category__Catego__34C8D9D1" Association="Self.FK__Category__Catego__34C8D9D1">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Forum__addedBy__2E1BDC42" Association="Self.FK__Forum__addedBy__2E1BDC42">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Forum" EntitySet="Fora" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reply__ForumID__30F848ED" Association="Self.FK__Reply__ForumID__30F848ED">
+      <End Role="Forum" EntitySet="Fora" />
+      <End Role="Reply" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GameCode__GameCo__3B75D760" Association="Self.FK__GameCode__GameCo__3B75D760">
+      <End Role="UserGamer" EntitySet="UserGamers" />
+      <End Role="GameCode" EntitySet="GameCodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reply__ReplyBy__31EC6D26" Association="Self.FK__Reply__ReplyBy__31EC6D26">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Reply" EntitySet="Replies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transcati__Trans__37A5467C" Association="Self.FK__Transcati__Trans__37A5467C">
+      <End Role="UserGamer" EntitySet="UserGamers" />
+      <End Role="Transcation" EntitySet="Transcations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transcati__Trans__38996AB5" Association="Self.FK__Transcati__Trans__38996AB5">
+      <End Role="UserGamer" EntitySet="UserGamers" />
+      <End Role="Transcation" EntitySet="Transcations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserAdmin__UserI__286302EC" Association="Self.FK__UserAdmin__UserI__286302EC">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserAdmin" EntitySet="UserAdmins" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserGamer__UserI__2B3F6F97" Association="Self.FK__UserGamer__UserI__2B3F6F97">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserGamer" EntitySet="UserGamers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserMessa__SendB__45F365D3" Association="Self.FK__UserMessa__SendB__45F365D3">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserMessages" EntitySet="UserMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserMessa__SendT__44FF419A" Association="Self.FK__UserMessa__SendT__44FF419A">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserMessages" EntitySet="UserMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__RoleID__5165187F" Association="Self.FK__Users__RoleID__5165187F">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transcati__GameC__5CD6CB2B" Association="GameProjectModel.FK__Transcati__GameC__5CD6CB2B">
+      <End Role="GameCode" EntitySet="GameCodes" />
+      <End Role="Transcation" EntitySet="Transcations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transcati__GameC__5DCAEF64" Association="GameProjectModel.FK__Transcati__GameC__5DCAEF64">
+      <End Role="GameCode" EntitySet="GameCodes" />
+      <End Role="Transcation" EntitySet="Transcations" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(GameProjectModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(GameProjectModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <Association Name="FK__Transcati__GameC__5CD6CB2B">
+    <End Type="GameProjectModel.GameCode" Role="GameCode" Multiplicity="1" />
+    <End Type="GameProjectModel.Transcation" Role="Transcation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameCode">
+        <PropertyRef Name="GameCodeID" />
+      </Principal>
+      <Dependent Role="Transcation">
+        <PropertyRef Name="GameCodeOffer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transcati__GameC__5DCAEF64">
+    <End Type="GameProjectModel.GameCode" Role="GameCode" Multiplicity="1" />
+    <End Type="GameProjectModel.Transcation" Role="Transcation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GameCode">
+        <PropertyRef Name="GameCodeID" />
+      </Principal>
+      <Dependent Role="Transcation">
+        <PropertyRef Name="GameCodeRequested" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

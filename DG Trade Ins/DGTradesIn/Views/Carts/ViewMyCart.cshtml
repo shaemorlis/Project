@@ -1,0 +1,62 @@
+﻿@model DGTradesIn.Models.Cart
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<hr />
+<dl class="dl-horizontal">
+
+    <dt>
+        @Html.DisplayNameFor(model => model.TotalPrice)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.TotalPrice)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.CreatedAt)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.CreatedAt)
+    </dd>
+    <dt>
+        @Html.DisplayNameFor(model => model.Quantity)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.Quantity)
+    </dd>
+
+
+    
+    @foreach (var item in Model.CartGameCodes)
+    {
+        <hr />
+
+        <dt>
+            @Html.DisplayNameFor(model => item.GameCode1.GameCodeTitle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.GameCode1.GameCodeTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => item.GameCode1.GameCodePrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.GameCode1.GameCodePrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => item.GameCode1.GameCodeDiscount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(modelItem => item.GameCode1.GameCodeDiscount)
+        </dd>
+
+
+
+    }
+
+</dl>
+    @Html.ActionLink("Check Out ", "CheckOut", "Carts",null, new { @class= "btn btn-primary stretched-link" })

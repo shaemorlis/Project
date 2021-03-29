@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DGTradesIn.Models.CartGameCode>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cart.CartID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GameCode1.GameCodeImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cart.CartID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCode1.GameCodeImage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CartGameCodeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CartGameCodeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CartGameCodeID })
+        </td>
+    </tr>
+}
+
+</table>

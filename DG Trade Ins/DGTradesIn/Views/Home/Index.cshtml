@@ -1,0 +1,131 @@
+﻿@model IEnumerable<DGTradesIn.Models.GameCode>
+
+@{
+    ViewBag.Title = "DG Trade In";
+}
+
+
+
+
+<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 " style="background-color: black">
+    <div class="text-img">
+        <figure><img src="~/images/img.png" alt="#" /></figure>
+    </div>
+</div>
+
+<!-- our -->
+<div id="games" class="our">
+
+
+    <div></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="titlepage">
+                    <h2>Game Codes</h2>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["error"]
+                    </div>
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success">
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+           
+
+
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+
+                    if (item.wantSwap != null && item.wantSwap.Equals("yes"))
+                    {
+                        <div class="col-md-12 margin_bottom">
+                            <div class="row">
+                                @if (item.GameCodeImage != null)
+                                {
+                                    <div class="two-box">
+                                        <figure><img src="@Url.Content(item.GameCodeImage)" alt="#" /></figure>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="two-box">
+                                        <figure><img src="~/GameCodeImages/temp.png" alt="#" /></figure>
+                                    </div>
+                                }
+
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+
+                                <div class="Games">
+                                    <h4>@Html.DisplayFor(modelItem => item.GameCodeTitle)</h4>
+                                    <h5>Price : @Html.DisplayFor(modelItem => item.GameCodePrice)</h5>
+                                    <h5>Discount : @Html.DisplayFor(modelItem => item.GameCodeDiscount)</h5>
+
+                                    <h5>Game Code Added by : @Html.DisplayFor(modelItem => item.UserGamer.User.email)</h5>
+
+
+                                    @Html.ActionLink("Add to Cart", "addItemToCart", "CartGameCodes", new { gameCode = item.GameCodeID }, null);
+                                    @Html.ActionLink("Swap", "MakeRequest", "Transcations", new { gameCodeRequested=item.GameCodeID , TransactionRequestedTo=item.GameCodeAddedBy }, null)
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-12 margin_bottom">
+                            <div class="row">
+                                @if (item.GameCodeImage != null)
+                                {
+                                    <div class="two-box">
+                                        <figure><img src="@Url.Content(item.GameCodeImage)" alt="#" /></figure>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="two-box">
+                                        <figure><img src="~/GameCodeImages/temp.png" alt="#" /></figure>
+                                    </div>
+                                }
+                            </div>
+
+                            <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12">
+
+                                <div class="Games">
+                                    <h4>@Html.DisplayFor(modelItem => item.GameCodeTitle)</h4>
+                                    <h5>Price : @Html.DisplayFor(modelItem => item.GameCodePrice)</h5>
+                                    <h5>Discount : @Html.DisplayFor(modelItem => item.GameCodeDiscount)</h5>
+                                    <h5>Game Code Added by : @Html.DisplayFor(modelItem => item.UserGamer.User.email)</h5>
+                                    @Html.ActionLink("Add to Cart", "addItemToCart", "CartGameCodes", new { gameCode = item.GameCodeID }, null);
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+            }
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+</div>
+

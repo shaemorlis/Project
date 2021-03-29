@@ -1,0 +1,96 @@
+﻿@model IEnumerable<DGTradesIn.Models.GameCode>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<br>
+<br>
+<br>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+</p>
+
+@if (Model.ToList().Count>0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCodeImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCodeTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCodeDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCodePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCodeDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameCodeAddedDate)
+            </th>
+
+            <th></th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+    <tr>
+        @if (item.GameCodeImage != null)
+        {
+            <td>
+                <img src="@Url.Content(item.GameCodeImage)" height="150" width="150" alt="Game Code Image" />
+
+            </td>
+        }
+        else
+        {
+            <td>
+                <img src="~/GameCodeImages/temp.png" height="150" width="150" alt="Game Code Image" />
+
+            </td>
+        }
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCodeTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCodeDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCodePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCodeDiscount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GameCodeAddedDate)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.GameCodeID }) |
+
+            @Html.ActionLink("Remove", "Delete", new { id = item.GameCodeID })
+        </td>
+    </tr>
+            }
+        }
+
+
+    </table>
+
+}
+else
+{
+    <div class="alert alert-danger alert-dismissable">
+        <h3>You Don't have any Game Codes</h3>
+    </div>
+}

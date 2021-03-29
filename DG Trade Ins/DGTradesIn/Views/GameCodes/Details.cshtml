@@ -1,0 +1,74 @@
+﻿@model DGTradesIn.Models.GameCode
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GameCode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeAddedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeAddedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserGamer.GamerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserGamer.GamerID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GameCodeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

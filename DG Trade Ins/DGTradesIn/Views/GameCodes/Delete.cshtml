@@ -1,0 +1,80 @@
+﻿@model DGTradesIn.Models.GameCode
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>GameCode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameCodeAddedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameCodeAddedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserGamer.GamerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserGamer.GamerID)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
